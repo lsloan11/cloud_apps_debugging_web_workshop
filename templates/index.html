@@ -8,20 +8,31 @@
   <h1>The Broken Blog</h1>
 
   <h3>Add a new post</h3>
-  <form method="post" action="/posts">
-    Title: <input type="text" name="post_title" />
+  <form method="POST" action="/posts">
+    Title: <input type="text" name="title" />
     Content: <input type="text" name="content" />
     Tags: <input type="text" name="tags" />
 
     <input type="submit" value="Submit" />
+    <!-- <input onclick="window.location.href = 'index';" type="submit" value="Submit" /> -->
   </form>
+
+  <!-- <h3>Search via tags</h3>
+  <search>
+  <form method="POST" action="/tag/<tag>">
+    Tags: <input type="text" name="tags" />
+  <input type="submit" value="Submit" />
+  </form>
+  </search> -->
 
   <hr />
   {% for post in posts %}
     <div>
       <h3>{{ post.title }}</h3>
+      <p>{{ post.content }}</p>
       <p>{{ post.tags }}</p>
     </div>
   {% endfor %}
 </body>
 </html>
+</meta>

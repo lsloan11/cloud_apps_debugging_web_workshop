@@ -10,7 +10,7 @@ class PostRepository:
         rows = self._connection.execute('SELECT * from posts')
         posts = []
         for row in rows:
-            item = Post(row["title"], row["tags"], row["content"], row["id"])
+            item = Post(row['title'], row['content'], row['tags'], row['id'])
             posts.append(item)
         return posts
 
@@ -19,13 +19,16 @@ class PostRepository:
         rows = self._connection.execute(
             'SELECT * from posts WHERE id = %s', [post_id])
         row = rows[0]
-        return Post(row["title"], row["content"], row['tags'], row["id"])
+        return Post(row['title'], row['content'], row['tags'], row['id'])
+
+    # def __eq__(self,other):
+    #     return self.__dict__ == other.__dict__
 
     # Create a new post
     # Do you want to get its id back? Look into RETURNING id;
     def create(self, post):
         self._connection.execute('INSERT INTO posts (title, content, tags) VALUES (%s, %s, %s)', [
-                                 post.title, post.content, post.tags])
+             post.title, post.content, post.tags])
         return None
 
     # Delete a post by its id
